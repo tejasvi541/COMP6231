@@ -23,7 +23,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
 
-		SpringApplication.run(Main.class, args);
+//		SpringApplication.run(Main.class, args);
 		LeaderElection leaderElection = new LeaderElection();
 		leaderElection.connectToZookeeper();
 		leaderElection.volunteerForLeadership();
