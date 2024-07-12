@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Main {
 
 	/**
-	 * The main method of the application.
+	 * The main method of the application to instantiate LeaderElection class, and use its methods to mimic leader election
 	 * @param args Command-line arguments. Not used in this application.
 	 * @throws IOException If an I/O error occurs when connecting to ZooKeeper.
 	 * @throws InterruptedException If the current thread is interrupted while waiting.
