@@ -4,9 +4,6 @@ public class QualitySettings {
     private int minBitrate;
     private int maxBitrate;
 
-    public QualitySettings() {
-    }
-
     public QualitySettings(int minBitrate, int maxBitrate) {
         this.minBitrate = minBitrate;
         this.maxBitrate = maxBitrate;
