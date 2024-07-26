@@ -14,12 +14,13 @@ public class FruitPriceController {
 
     @GetMapping("/fruit-month-price/fruit/{fruit}/month/{month}")
     public FruitPrice getFruitPrice(@PathVariable String fruit, @PathVariable String month) {
-        return fruitPriceService.getFruitPrice(fruit, month);
+        double price = fruitPriceService.getFruitPrice(fruit, month);
+        return new FruitPrice(fruit, month, price);
     }
 
     @GetMapping("/total-fruit-price/fruit/{fruit}/month/{month}/quantity/{quantity}")
     public TotalFruitPrice getTotalFruitPrice(@PathVariable String fruit, @PathVariable String month, @PathVariable int quantity) {
-        double price = fruitPriceService.getFruitPrice(fruit, month).getPrice();
+        double price = fruitPriceService.getFruitPrice(fruit, month);
         return new TotalFruitPrice(fruit, month, quantity, price * quantity);
     }
 }

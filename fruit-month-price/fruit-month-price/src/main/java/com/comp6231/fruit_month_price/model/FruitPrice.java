@@ -23,8 +23,54 @@ public class FruitPrice {
     private double oct;
     private double nov;
     private double dec;
+    private double price;
+
 
     public FruitPrice() {
+    }
+
+    public FruitPrice(String fruit, String month, double price) {
+        this.fruit = fruit;
+        switch (month.toLowerCase()) {
+            case "jan":
+                this.jan = price;
+                break;
+            case "feb":
+                this.feb = price;
+                break;
+            case "mar":
+                this.mar = price;
+                break;
+            case "apr":
+                this.apr = price;
+                break;
+            case "may":
+                this.may = price;
+                break;
+            case "jun":
+                this.jun = price;
+                break;
+            case "jul":
+                this.jul = price;
+                break;
+            case "aug":
+                this.aug = price;
+                break;
+            case "sep":
+                this.sep = price;
+                break;
+            case "oct":
+                this.oct = price;
+                break;
+            case "nov":
+                this.nov = price;
+                break;
+            case "dec":
+                this.dec = price;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid month: " + month);
+        }
     }
 
     public FruitPrice(String fruit, double jan, double feb, double mar, double apr, double may, double jun, double jul, double aug, double sep, double oct, double nov, double dec) {
