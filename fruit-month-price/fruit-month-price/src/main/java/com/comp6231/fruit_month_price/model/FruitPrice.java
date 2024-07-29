@@ -1,5 +1,6 @@
 package com.comp6231.fruit_month_price.model;
 import java.math.BigDecimal;
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,17 +12,29 @@ public class FruitPrice {
 
     @Id
     private String fruit;
+    @Column
     private double jan;
+    @Column
     private double feb;
+    @Column
     private double mar;
+    @Column
     private double apr;
+    @Column
     private double may;
+    @Column
     private double jun;
+    @Column
     private double jul;
+    @Column
     private double aug;
+    @Column
     private double sep;
+    @Column
     private double oct;
+    @Column
     private double nov;
+    @Column
     private double dec;
     private double price;
 

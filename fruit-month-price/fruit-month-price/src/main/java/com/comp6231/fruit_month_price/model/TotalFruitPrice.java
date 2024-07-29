@@ -1,7 +1,6 @@
-package com.comp6231.fruit_month_price.controller;
+package com.comp6231.fruit_month_price.model;
 
 public class TotalFruitPrice {
-
     private String fruit;
     private String month;
     private int quantity;
