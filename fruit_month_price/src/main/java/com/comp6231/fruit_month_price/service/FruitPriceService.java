@@ -18,7 +18,7 @@ public class FruitPriceService {
     }
 
     public double getFruitPrice(String fruit, String month) {
-        Optional<FruitPrice> optionalFruitPrice = fruitPriceRepository.findById(fruit);
+        Optional<FruitPrice> optionalFruitPrice = Optional.ofNullable(fruitPriceRepository.findFruitPriceByFruit(fruit));
         if (optionalFruitPrice.isEmpty()) {
             throw new IllegalArgumentException("No price found for " + fruit);
         }

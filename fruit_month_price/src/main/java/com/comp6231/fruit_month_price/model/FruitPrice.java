@@ -13,6 +13,8 @@ import jakarta.persistence.Column;
 public class FruitPrice {
 
     @Id
+    private long id;
+    @Column
     private String fruit;
     @Column
     private double jan;
