@@ -1,9 +1,11 @@
 package com.comp6231.fruit_month_price.model;
-import java.math.BigDecimal;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+
+
 
 
 
@@ -44,46 +46,43 @@ public class FruitPrice {
 
     public FruitPrice(String fruit, String month, double price) {
         this.fruit = fruit;
+        setPriceForMonth(month, price);
+    }
+
+    public void setPriceForMonth(String month, double price) {
         switch (month.toLowerCase()) {
-            case "jan":
-                this.jan = price;
-                break;
-            case "feb":
-                this.feb = price;
-                break;
-            case "mar":
-                this.mar = price;
-                break;
-            case "apr":
-                this.apr = price;
-                break;
-            case "may":
-                this.may = price;
-                break;
-            case "jun":
-                this.jun = price;
-                break;
-            case "jul":
-                this.jul = price;
-                break;
-            case "aug":
-                this.aug = price;
-                break;
-            case "sep":
-                this.sep = price;
-                break;
-            case "oct":
-                this.oct = price;
-                break;
-            case "nov":
-                this.nov = price;
-                break;
-            case "dec":
-                this.dec = price;
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid month: " + month);
+            case "jan": this.jan = price; break;
+            case "feb": this.feb = price; break;
+            case "mar": this.mar = price; break;
+            case "apr": this.apr = price; break;
+            case "may": this.may = price; break;
+            case "jun": this.jun = price; break;
+            case "jul": this.jul = price; break;
+            case "aug": this.aug = price; break;
+            case "sep": this.sep = price; break;
+            case "oct": this.oct = price; break;
+            case "nov": this.nov = price; break;
+            case "dec": this.dec = price; break;
+            default: throw new IllegalArgumentException("Invalid month: " + month);
         }
+    }
+
+    public double getPriceForMonth(String month) {
+        return switch (month.toLowerCase()) {
+            case "jan" -> this.jan;
+            case "feb" -> this.feb;
+            case "mar" -> this.mar;
+            case "apr" -> this.apr;
+            case "may" -> this.may;
+            case "jun" -> this.jun;
+            case "jul" -> this.jul;
+            case "aug" -> this.aug;
+            case "sep" -> this.sep;
+            case "oct" -> this.oct;
+            case "nov" -> this.nov;
+            case "dec" -> this.dec;
+            default -> throw new IllegalArgumentException("Invalid month: " + month);
+        };
     }
 
     public FruitPrice(String fruit, double jan, double feb, double mar, double apr, double may, double jun, double jul, double aug, double sep, double oct, double nov, double dec) {
