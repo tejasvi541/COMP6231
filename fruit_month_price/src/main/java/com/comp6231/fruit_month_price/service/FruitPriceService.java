@@ -5,8 +5,6 @@ import com.comp6231.fruit_month_price.repository.FruitPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class FruitPriceService {
 
@@ -18,12 +16,19 @@ public class FruitPriceService {
     }
 
     public double getFruitPrice(String fruit, String month) {
-        Optional<FruitPrice> optionalFruitPrice = Optional.ofNullable(fruitPriceRepository.findFruitPriceByFruit(fruit));
-        if (optionalFruitPrice.isEmpty()) {
-            throw new IllegalArgumentException("No price found for " + fruit);
+        FruitPrice fruitPrice = fruitPriceRepository.findByFruit(fruit);
+        if (fruitPrice == null) {
+            throw new IllegalArgumentException("Fruit not found: " + fruit);
         }
-        FruitPrice fruitPrice = optionalFruitPrice.get();
         return fruitPrice.getPriceForMonth(month);
     }
-}
 
+    public FruitPrice getFruitPriceEntity(String fruit, String month) {
+        FruitPrice fruitPrice = fruitPriceRepository.findByFruit(fruit);
+        if (fruitPrice == null) {
+            throw new IllegalArgumentException("Fruit not found: " + fruit);
+        }
+        double price = fruitPrice.getPriceForMonth(month);
+        return new FruitPrice(fruitPrice.getId(), fruit, month, price);
+    }
+}

@@ -1,13 +1,9 @@
 package com.comp6231.fruit_month_price.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
-
-
-
-
+import jakarta.persistence.Transient;
 
 @Entity
 public class FruitPrice {
@@ -40,54 +36,16 @@ public class FruitPrice {
     private double nov;
     @Column
     private double dec;
-    private double price;
 
+    // Price for the specific month, not stored in DB
+    @Transient
+    private double price;
 
     public FruitPrice() {
     }
 
-    public FruitPrice(String fruit, String month, double price) {
-        this.fruit = fruit;
-        setPriceForMonth(month, price);
-    }
-
-    public void setPriceForMonth(String month, double price) {
-        switch (month.toLowerCase()) {
-            case "jan": this.jan = price; break;
-            case "feb": this.feb = price; break;
-            case "mar": this.mar = price; break;
-            case "apr": this.apr = price; break;
-            case "may": this.may = price; break;
-            case "jun": this.jun = price; break;
-            case "jul": this.jul = price; break;
-            case "aug": this.aug = price; break;
-            case "sep": this.sep = price; break;
-            case "oct": this.oct = price; break;
-            case "nov": this.nov = price; break;
-            case "dec": this.dec = price; break;
-            default: throw new IllegalArgumentException("Invalid month: " + month);
-        }
-    }
-
-    public double getPriceForMonth(String month) {
-        return switch (month.toLowerCase()) {
-            case "jan" -> this.jan;
-            case "feb" -> this.feb;
-            case "mar" -> this.mar;
-            case "apr" -> this.apr;
-            case "may" -> this.may;
-            case "jun" -> this.jun;
-            case "jul" -> this.jul;
-            case "aug" -> this.aug;
-            case "sep" -> this.sep;
-            case "oct" -> this.oct;
-            case "nov" -> this.nov;
-            case "dec" -> this.dec;
-            default -> throw new IllegalArgumentException("Invalid month: " + month);
-        };
-    }
-
-    public FruitPrice(String fruit, double jan, double feb, double mar, double apr, double may, double jun, double jul, double aug, double sep, double oct, double nov, double dec) {
+    public FruitPrice(long id, String fruit, double jan, double feb, double mar, double apr, double may, double jun, double jul, double aug, double sep, double oct, double nov, double dec) {
+        this.id = id;
         this.fruit = fruit;
         this.jan = jan;
         this.feb = feb;
@@ -103,7 +61,22 @@ public class FruitPrice {
         this.dec = dec;
     }
 
-    // Getters and setters
+    public FruitPrice(long id, String fruit, String month, double price) {
+        this.id = id;
+        this.fruit = fruit;
+        setPriceForMonth(month, price);
+    }
+
+    // Getters and setters for all fields
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getFruit() {
         return fruit;
     }
@@ -206,5 +179,41 @@ public class FruitPrice {
 
     public void setDec(double dec) {
         this.dec = dec;
+    }
+
+    public double getPriceForMonth(String month) {
+        return switch (month.toLowerCase()) {
+            case "jan" -> this.jan;
+            case "feb" -> this.feb;
+            case "mar" -> this.mar;
+            case "apr" -> this.apr;
+            case "may" -> this.may;
+            case "jun" -> this.jun;
+            case "jul" -> this.jul;
+            case "aug" -> this.aug;
+            case "sep" -> this.sep;
+            case "oct" -> this.oct;
+            case "nov" -> this.nov;
+            case "dec" -> this.dec;
+            default -> throw new IllegalArgumentException("Invalid month: " + month);
+        };
+    }
+
+    public void setPriceForMonth(String month, double price) {
+        switch (month.toLowerCase()) {
+            case "jan" -> this.jan = price;
+            case "feb" -> this.feb = price;
+            case "mar" -> this.mar = price;
+            case "apr" -> this.apr = price;
+            case "may" -> this.may = price;
+            case "jun" -> this.jun = price;
+            case "jul" -> this.jul = price;
+            case "aug" -> this.aug = price;
+            case "sep" -> this.sep = price;
+            case "oct" -> this.oct = price;
+            case "nov" -> this.nov = price;
+            case "dec" -> this.dec = price;
+            default -> throw new IllegalArgumentException("Invalid month: " + month);
+        };
     }
 }
