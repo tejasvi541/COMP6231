@@ -1,5 +1,6 @@
 package com.comp6231.fruit_month_price.service;
 
+import com.comp6231.fruit_month_price.dto.FruitPriceDto;
 import com.comp6231.fruit_month_price.model.FruitPrice;
 import com.comp6231.fruit_month_price.repository.FruitPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +16,12 @@ public class FruitPriceService {
         this.fruitPriceRepository = fruitPriceRepository;
     }
 
-    public double getFruitPrice(String fruit, String month) {
-        FruitPrice fruitPrice = fruitPriceRepository.findByFruit(fruit);
-        if (fruitPrice == null) {
-            throw new IllegalArgumentException("Fruit not found: " + fruit);
-        }
-        return fruitPrice.getPriceForMonth(month);
-    }
-
-    public FruitPrice getFruitPriceEntity(String fruit, String month) {
+    public FruitPriceDto getFruitPriceEntity(String fruit, String month) {
         FruitPrice fruitPrice = fruitPriceRepository.findByFruit(fruit);
         if (fruitPrice == null) {
             throw new IllegalArgumentException("Fruit not found: " + fruit);
         }
         double price = fruitPrice.getPriceForMonth(month);
-        return new FruitPrice(fruitPrice.getId(), fruit, month, price);
+        return new FruitPriceDto(fruitPrice.getId(), fruit, month, price);
     }
 }
