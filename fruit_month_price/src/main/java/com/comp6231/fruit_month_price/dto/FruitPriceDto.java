@@ -7,11 +7,16 @@ public class FruitPriceDto {
     private String month;
     private double price;
 
-    public FruitPriceDto(long id, String fruit, String month, double price) {
+
+
+    private String environment;
+
+    public FruitPriceDto(long id, String fruit, String month, double price, String environment) {
         this.id = id;
         this.fruit = fruit;
         this.month = month;
         this.price = price;
+        this.environment = environment;
     }
 
     // Getters and setters
@@ -46,5 +51,13 @@ public class FruitPriceDto {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(String environment) {
+        this.environment = environment;
     }
 }

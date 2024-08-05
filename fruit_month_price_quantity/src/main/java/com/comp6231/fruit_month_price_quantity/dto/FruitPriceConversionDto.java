@@ -8,14 +8,17 @@ public class FruitPriceConversionDto {
   private int quantity;
   private double totalPrice;
 
+  private String port;
+
   public FruitPriceConversionDto(long id, String fruit, String month, double price, int quantity,
-      double totalPrice) {
+      double totalPrice,String port) {
     this.id = id;
     this.fruit = fruit;
     this.month = month;
     this.price = price;
     this.quantity = quantity;
     this.totalPrice = totalPrice;
+    this.port = port;
   }
 
   public void setId(long id) {
@@ -64,5 +67,13 @@ public class FruitPriceConversionDto {
 
   public double getTotalPrice() {
     return totalPrice;
+  }
+
+  public String getPort() {
+    return port;
+  }
+
+  public void setPort(String port) {
+    this.port = port;
   }
 }
